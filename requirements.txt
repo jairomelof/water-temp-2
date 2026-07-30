@@ -1,0 +1,7 @@
+shiny>=1.0.0
+shinylive
+pandas
+shinywidgets
+folium
+plotly
+requests
