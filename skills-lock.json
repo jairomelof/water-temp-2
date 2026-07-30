@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "dreamlab-coder-workspace": {
+      "source": "ucsb-dreamlab/skills",
+      "sourceType": "github",
+      "skillPath": "skills/dreamlab-coder-workspace/SKILL.md",
+      "computedHash": "3e0cea4f0d26c93b60f8aa1c11a33bd6d844562a2dfc9ece0c245a7ab9cc70d1"
+    },
+    "web-a11y": {
+      "source": "ucsb-dreamlab/skills",
+      "sourceType": "github",
+      "skillPath": "skills/web-a11y/SKILL.md",
+      "computedHash": "47b89f247e561187c5eb9254558837724358bc2a9e6bb661bf0ae786d990bbe6"
+    }
+  }
+}
