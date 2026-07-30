@@ -1,7 +1,12 @@
 pandas
+requests
 folium
 plotly
 shinywidgets
 branca
 jinja2
 xyzservices
+urllib3
+certifi
+idna
+charset_normalizer
