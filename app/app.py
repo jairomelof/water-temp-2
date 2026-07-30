@@ -34,7 +34,32 @@ if DATA_PATH.exists():
 else:
     DF_RAW = pd.DataFrame(columns=["StationID", "StationName", "Date_Time", "Water_Temperature", "lat", "lng"])
 
-ui.page_opts(title="California Water Temperature Dashboard", fillable=True)
+ui.page_opts(title="California Water Temperature Dashboard", fillable=True, lang="en")
+
+ui.head_content(
+    ui.tags.script("""
+    document.addEventListener("DOMContentLoaded", function() {
+        function fixA11y() {
+            if (document.documentElement && !document.documentElement.hasAttribute('lang')) {
+                document.documentElement.setAttribute('lang', 'en');
+            }
+            document.querySelectorAll('.bslib-sidebar-resize-handle[role="separator"]').forEach(function(el) {
+                if (!el.hasAttribute('aria-valuenow')) {
+                    el.setAttribute('aria-valuenow', '50');
+                    el.setAttribute('aria-valuemin', '0');
+                    el.setAttribute('aria-valuemax', '100');
+                }
+            });
+            document.querySelectorAll('iframe:not([title])').forEach(function(iframe) {
+                iframe.setAttribute('title', 'California Station Map');
+            });
+        }
+        fixA11y();
+        const observer = new MutationObserver(fixA11y);
+        observer.observe(document.body || document.documentElement, { childList: true, subtree: true });
+    });
+    """)
+)
 
 # Helper function for temperature unit state: False = °C, True = °F
 def unit_is_f():
@@ -177,7 +202,10 @@ with ui.layout_columns(col_widths=[6, 6]):
                         fill_opacity=0.85
                     ).add_to(m)
             
-            return ui.HTML(m._repr_html_())
+            html_str = m._repr_html_()
+            if "<iframe " in html_str:
+                html_str = html_str.replace("<iframe ", '<iframe title="California Station Map" ')
+            return ui.HTML(html_str)
 
     with ui.card(full_screen=True):
         ui.card_header("Water Temperature Trend")
