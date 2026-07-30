@@ -1,0 +1,7 @@
+pandas
+folium
+plotly
+shinywidgets
+branca
+jinja2
+xyzservices
